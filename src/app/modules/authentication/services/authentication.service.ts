@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { AuthenticationResponse } from '../models/authentication-response.model';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+import { environment } from '../../../../environments/environment';
+import { ErrorResponse } from '../../../enum/error-response.enum';
+import { ERROR_MESSAGE } from '../../../const/error-message.const';
+import { AuthenticationResponse } from '../models/authentication-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,26 +53,24 @@ export class AuthenticationService {
       /**
        * SIGNUP
        */
-      case 'EMAIL_EXISTS':
-        errorMessage = 'The email address is already in use by another account.';
+      case `${ErrorResponse.EMAIL_EXISTS}`:
+        errorMessage = `${ERROR_MESSAGE.EMAIL_EXISTS}`;
         break;
-      case 'OPERATION_NOT_ALLOWED':
-        errorMessage = 'Password sign-in is disabled for this project.';
+      case `${ErrorResponse.OPERATION_NOT_ALLOWED}`:
+        errorMessage = `${ERROR_MESSAGE.OPERATION_NOT_ALLOWED}`;
         break;
-      case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-        errorMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
+      case `${ErrorResponse.TOO_MANY_ATTEMPTS_TRY_LATER}`:
+        errorMessage = `${ERROR_MESSAGE.TOO_MANY_ATTEMPTS_TRY_LATER}`;
         break;
       /**
        * LOGIN
        */
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'There is no user record corresponding to this identifier. The user may have been deleted.';
+      case `${ErrorResponse.EMAIL_NOT_FOUND}`:
+      case `${ErrorResponse.INVALID_PASSWORD}`:
+        errorMessage = `${ERROR_MESSAGE.EMAIL_OR_PASSWORD_NOT_FOUND}`;
         break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'The password is invalid or the user does not have a password.';
-        break;
-      case 'USER_DISABLED':
-        errorMessage = 'The user account has been disabled by an administrator.';
+      case `${ErrorResponse.USER_DISABLED}`:
+        errorMessage = `${ERROR_MESSAGE.USER_DISABLED}`;
         break;
     }
 

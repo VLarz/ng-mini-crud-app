@@ -50,7 +50,7 @@ export class AuthenticationComponent implements OnInit {
         console.log(this.error);
       }
     );
-    
+
     authForm.reset();
   }
 }
