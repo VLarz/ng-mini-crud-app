@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h3 class="display-5 mb-3">{{ isLoginMode ? 'Login' : 'Signup' }}</h3>
+
+              <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                <div class="form-group mb-3">
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    class="form-control  border-0 shad
+                    ow-sm px-4"
+                    name="email"
+                    ngModel
+                    required
+                    email>
+                </div>
+
+                <div class="form-group mb-3">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    class="form-control border-0 shadow-sm px-4 text-primary"
+                    name="password"
+                    ngModel
+                    required
+                    minlength='6'>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary mb-2 shadow-sm "
+                  [disabled]="!authForm.valid">
+                  {{ isLoginMode ? 'Login' : 'Signup' }}
+                </button>
+
+                <div class="mt-4"><p>{{ isLoginMode ? 'Not registered?' : 'Already have an account?'}}
+                  <a
+                    style="cursor: pointer;"
+                    class="font-italic text-blue"
+                    (click)="onCreate()">
+                  <u> {{ isLoginMode ? 'Create an Account' : 'Login'}}</u></a></p>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
