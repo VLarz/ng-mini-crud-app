@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthenticationResponse } from '../../models/authentication-response.model';
@@ -15,12 +16,12 @@ export class AuthenticationComponent implements OnInit {
   isLoginMode = true;
   error: string = null;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
   }
-
 
   onCreate(): void {
     this.isLoginMode = !this.isLoginMode;
@@ -42,10 +43,9 @@ export class AuthenticationComponent implements OnInit {
       authObservable = this.authenticationService.signUp(EMAIL, PASSWORD);
     }
 
-    authObservable.subscribe(
-      responseData => {
-        console.log(responseData);
-      },
+    authObservable.subscribe(() => {
+      this.router.navigate(['/artist']);
+    },
       errorMessage => {
         this.error = errorMessage;
         console.log(this.error);

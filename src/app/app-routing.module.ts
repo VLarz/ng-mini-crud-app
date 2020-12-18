@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthenticationComponent } from './modules/authentication/components/authentication/authentication.component';
-
 const routes: Routes = [
-  { path: '', redirectTo: '/auth', pathMatch: 'full'},
-  { path: 'auth', component: AuthenticationComponent}
+  { path: '', redirectTo: 'auth', pathMatch: 'full'},
+  { path: 'auth',
+    loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule) },
+  // { path: 'artists' }
 ];
 
 @NgModule({

@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ArtistsRoutingModule } from './artists-routing.module';
+import { ArtistsComponent } from './components/artists/artists.component';
+import { ArtistListComponent } from './components/artists/artist-list/artist-list.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ArtistsComponent, ArtistListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ArtistsRoutingModule
   ]
 })
 export class ArtistsModule { }
