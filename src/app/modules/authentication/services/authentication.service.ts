@@ -1,20 +1,20 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { ErrorResponse } from '../../../enum/error-response.enum';
 import { ERROR_MESSAGE } from '../../../const/error-message.const';
 import { AuthenticationResponse } from '../models/authentication-response.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  constructor(private http: HttpClient,
-               ) { }
+  user = new BehaviorSubject<User>(null);
+  constructor(private http: HttpClient) { }
 
   signUp(email: string, password: string): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(

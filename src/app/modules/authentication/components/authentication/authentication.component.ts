@@ -14,7 +14,7 @@ export class AuthenticationComponent implements OnInit {
   isLoginMode = true;
   error: string = null;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
 
@@ -36,9 +36,9 @@ export class AuthenticationComponent implements OnInit {
     let authObservable: Observable<AuthenticationResponse>;
 
     if (this.isLoginMode) {
-      authObservable = this.authService.login(EMAIL, PASSWORD);
+      authObservable = this.authenticationService.login(EMAIL, PASSWORD);
     } else {
-      authObservable = this.authService.signUp(EMAIL, PASSWORD);
+      authObservable = this.authenticationService.signUp(EMAIL, PASSWORD);
     }
 
     authObservable.subscribe(
