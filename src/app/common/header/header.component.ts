@@ -7,11 +7,24 @@ import { AuthenticationService } from 'src/app/modules/authentication/services/a
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
-  constructor() { }
+export class HeaderComponent implements OnInit, OnDestroy {
+  isAuthenticated = false;
+  subscription: Subscription;
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-
+    this.userSubscription();
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  userSubscription(): void {
+    this.subscription =  this.authenticationService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
+  }
+
+
 }
