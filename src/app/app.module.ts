@@ -16,7 +16,7 @@ import { HeaderComponent } from './common/header/header.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AuthenticationModule
+    AuthenticationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
