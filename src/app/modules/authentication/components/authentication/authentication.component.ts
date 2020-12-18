@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AuthenticationResponse } from '../../models/authentication-response.model';
 
+import { AuthenticationResponse } from '../../models/authentication-response.model';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
+
 export class AuthenticationComponent implements OnInit {
   isLoginMode = true;
   error: string = null;
